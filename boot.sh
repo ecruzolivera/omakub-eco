@@ -16,13 +16,8 @@ sudo apt-get update >/dev/null
 sudo apt-get install -y git >/dev/null
 
 echo "Cloning Omakub..."
-rm -rf ~/.local/share/omakub
-git clone https://github.com/basecamp/omakub.git ~/.local/share/omakub >/dev/null
-if [[ $OMAKUB_REF != "master" ]]; then
-	cd ~/.local/share/omakub
-	git fetch origin "${OMAKUB_REF:-stable}" && git checkout "${OMAKUB_REF:-stable}"
-	cd -
-fi
-
+pushd /tmp
+git clone --dept 1 https://github.com/ecruzolivera/omakub.git
 echo "Installation starting..."
-source ~/.local/share/omakub/install.sh
+pushd omakub
+source ./install.sh

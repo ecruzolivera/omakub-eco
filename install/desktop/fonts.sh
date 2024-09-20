@@ -1,15 +1,23 @@
 mkdir -p ~/.local/share/fonts
 
-cd /tmp
-wget https://github.com/ryanoasis/nerd-fonts/releases/latest/download/CascadiaMono.zip
-unzip CascadiaMono.zip -d CascadiaFont
-cp CascadiaFont/*.ttf ~/.local/share/fonts
-rm -rf CascadiaMono.zip CascadiaFont
+set_font() {
+  local font_name=$1
+  local url=$2
+  local file_type=$3
+  local file_name="${font_name/ Nerd Font/}"
 
-wget -O iafonts.zip https://github.com/iaolo/iA-Fonts/archive/refs/heads/master.zip
-unzip iafonts.zip -d iaFonts
-cp iaFonts/iA-Fonts-master/iA\ Writer\ Mono/Static/iAWriterMonoS-*.ttf ~/.local/share/fonts
-rm -rf iafonts.zip iaFonts
+  if ! $(fc-list | grep -i "$font_name" >/dev/null); then
+    cd /tmp
+    wget -O "$file_name.zip" "$url"
+    unzip "$file_name.zip" -d "$file_name"
+    cp "$file_name"/*."$file_type" ~/.local/share/fonts
+    rm -rf "$file_name.zip" "$file_name"
+    fc-cache
+    cd -
+    clear
+  fi
 
-fc-cache
-cd -
+  gsettings set org.gnome.desktop.interface monospace-font-name "$font_name 12"
+}
+
+set_font "FiraMono Nerd Font" "https://github.com/ryanoasis/nerd-fonts/releases/latest/download/FiraMono.zip" "otf"
