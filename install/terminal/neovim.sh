@@ -1,1 +1,1 @@
-sudo snap install nvim --classic
+sudo dnf install -y nevim
