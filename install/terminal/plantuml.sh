@@ -1,1 +1,1 @@
-sudo apt install plantuml
+sudo apt install -y plantuml

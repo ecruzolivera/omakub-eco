@@ -13,7 +13,7 @@ gext install Vitals@CoreCoding.com
 gext install drive-menu@gnome-shell-extensions.gcampax.github.com
 
 #install pop shell
-sudo apt install git node-typescript make gnome-shell-extension-prefs
+sudo apt install -y git node-typescript make gnome-shell-extension-prefs
 cd /tmp
 git clone --depth 1 https://github.com/pop-os/shell.git
 cd shell
