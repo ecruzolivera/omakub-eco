@@ -10,3 +10,5 @@ sudo ufw route allow out on lxdbr0
 
 # React Native expo
 sudo ufw allow 8081
+# Foundry VTT
+sudo ufw allow 30000
